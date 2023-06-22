@@ -1,0 +1,14 @@
+.footer {
+  display: flex;
+  padding: 25px 32px;
+  justify-content: space-between;
+  background: #333;
+
+  &__text {
+    margin: 0;
+    color: #FFF;
+    font-size: 20px;
+    line-height: 31px;
+    font-family: Roboto;
+  }
+}
