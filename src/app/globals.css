@@ -1,1 +1,10 @@
 @import "normalize.css";
+
+html, body {
+  height: 100%;
+}
+
+main {
+  background-color: #F5F5F5;
+  min-height: calc(100vh - 81px - 84px)
+}
