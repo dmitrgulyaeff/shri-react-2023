@@ -1,0 +1,48 @@
+.user__review {
+  padding: 24px;
+  background-color: #fff;
+  display: grid;
+  grid-template-columns: 100px 32px 1fr min-content 8px min-content;
+  grid-template-rows: auto 16px auto;
+  grid-template-areas:
+    'photo . name  score . value'
+    'photo . . . . .'
+    'photo . comment comment comment comment';
+}
+
+.user__photo {
+  grid-area: photo;
+  border-radius: 8px;
+  background-size: cover;
+}
+
+.user__name {
+  margin: 0;
+  grid-area: name;
+  color: #1b1f23;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.user__comment {
+  grid-area: comment;
+  color: #1b1f23;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.user__score {
+  grid-area: score;
+  color: #1b1f23;
+  font-size: 20px;
+  line-height: 32px;
+}
+
+.user__score-value {
+  grid-area: value;
+  color: #1b1f23;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 32px;
+}
