@@ -1,5 +1,6 @@
 "use client";
 
+import TicketCounter from "@/components/TicketCounter";
 import { cartActions } from "@/redux/features/cart";
 import { selectProductAmount } from "@/redux/features/cart/selector";
 import { useGetMovieQuery, useGetMoviesQuery } from "@/redux/services/movieApi";
@@ -13,42 +14,42 @@ const Product = () => {
   return <div>{amount}</div>;
 };
 
-const Film = ({ filmId }) => {
-  const { data, isLoading, error } = useGetMovieQuery(filmId);
+// const Film = ({ filmId }) => {
+//   const { data, isLoading, error } = useGetMovieQuery(filmId);
 
-  if (isLoading) {
-    return <span>Loading...</span>;
-  }
+//   if (isLoading) {
+//     return <span>Loading...</span>;
+//   }
 
-  if (!data || error) {
-    return <span>NotFound</span>;
-  }
+//   if (!data || error) {
+//     return <span>NotFound</span>;
+//   }
 
-  return <div>Active: {data.title}</div>;
-};
+//   return <div>Active: {data.title}</div>;
+// };
 
-const Films = () => {
-  const { data, isLoading, error } = useGetMoviesQuery();
+// const Films = () => {
+//   const { data, isLoading, error } = useGetMoviesQuery();
 
-  const [currentFilmId, setCurrentFilmId] = useState();
-  if (isLoading) {
-    return <span>Loading...</span>;
-  }
+//   const [currentFilmId, setCurrentFilmId] = useState();
+//   if (isLoading) {
+//     return <span>Loading...</span>;
+//   }
 
-  if (!data || error) {
-    return <span>NotFound</span>;
-  }
-  return (
-    <div>
-      {data.map(({ id, title }) => (
-        <button key={id} onClick={() => setCurrentFilmId(id)}>
-          {title}
-        </button>
-      ))}
-      {currentFilmId && <Film filmId={currentFilmId} />}
-    </div>
-  );
-};
+//   if (!data || error) {
+//     return <span>NotFound</span>;
+//   }
+//   return (
+//     <div>
+//       {data.map(({ id, title }) => (
+//         <button key={id} onClick={() => setCurrentFilmId(id)}>
+//           {title}
+//         </button>
+//       ))}
+//       {currentFilmId && <Film filmId={currentFilmId} />}
+//     </div>
+//   );
+// };
 
 export default function Redux() {
   const dispatch = useDispatch();
@@ -62,7 +63,10 @@ export default function Redux() {
         +
       </button>
       <Product />
-      <Films />
+
+      {/* <Films /> */}
+      <TicketCounter id="124"/>
+      <TicketCounter id="123"/>
     </div>
   );
 }
