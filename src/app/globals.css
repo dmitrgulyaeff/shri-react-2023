@@ -8,3 +8,8 @@ main {
   background-color: #F5F5F5;
   min-height: calc(100vh - 81px - 84px)
 }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
