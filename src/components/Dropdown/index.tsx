@@ -5,27 +5,32 @@ import styles from './styles.module.scss';
 interface DropdownProps {
   label: string;
   defaultText: string;
-  options: string[];
-  onChange: (value: string) => void
+  options: {
+    id?: string;
+    name: string;
+  }[];
+  onChange: (value: string) => void;
 }
 
 const Dropdown: FC<DropdownProps> = ({
   label,
   defaultText,
   options,
-  onChange
+  onChange,
 }: DropdownProps) => {
   const [selectedOption, setSelectedOption] = useState('');
+  const [selectedValue, setSelectedValue] = useState('');
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  useEffect(() => onChange(selectedOption), [selectedOption, onChange])
-  
+  useEffect(() => onChange(selectedOption), [selectedOption, onChange]);
+
   const handleOpenList = () => {
     setIsOpen(true);
   };
 
-  const handleOptionSelect = (option: string) => {
-    setSelectedOption(option);
+  const handleOptionSelect = (option: { id?: string; name: string }) => {
+    setSelectedOption(option.id || option.name);
+    setSelectedValue(option.name);
   };
 
   return (
@@ -42,10 +47,12 @@ const Dropdown: FC<DropdownProps> = ({
         }
         onClick={handleOpenList}
       >
-        {selectedOption !== '' ? selectedOption : defaultText}
+        {selectedValue !== '' ? selectedValue : defaultText}
         <svg
-          className={styles['dropdown__selector-icon'] +
-          (isOpen ? ' ' + styles['dropdown__selector-icon_active'] : '')}
+          className={
+            styles['dropdown__selector-icon'] +
+            (isOpen ? ' ' + styles['dropdown__selector-icon_active'] : '')
+          }
           width="20"
           height="20"
           viewBox="0 0 20 20"
@@ -66,7 +73,7 @@ const Dropdown: FC<DropdownProps> = ({
             key="default"
             className={styles['dropdown__option']}
             onClick={() => {
-              handleOptionSelect('');
+              handleOptionSelect({ name: '' });
               setIsOpen(false);
             }}
           >
@@ -74,14 +81,14 @@ const Dropdown: FC<DropdownProps> = ({
           </li>
           {options.map((option) => (
             <li
-              key={option}
+              key={option.id || option.name}
               className={styles['dropdown__option']}
               onClick={() => {
                 handleOptionSelect(option);
                 setIsOpen(false);
               }}
             >
-              {option}
+              {option.name}
             </li>
           ))}
         </ul>
