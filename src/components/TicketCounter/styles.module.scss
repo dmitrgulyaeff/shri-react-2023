@@ -1,0 +1,26 @@
+.ticket {
+  &__counter-plus,
+  &__counter-minus,
+  &__delete {
+    line-height: 1;
+    font-size: 0;
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+  }
+
+  &__counter {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+
+    &__count {
+      grid-area: count;
+      color: #1B1F23;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 20px;
+    }
+  }
+}
