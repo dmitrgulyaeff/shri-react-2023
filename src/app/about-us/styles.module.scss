@@ -1,0 +1,27 @@
+.about-us {
+  padding: 24px 32px;
+}
+
+.about-us__card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  background-color: #FFF;
+  border-radius: 8px;
+
+}
+
+.about-us__card-head {
+  margin: 0;
+  color: #1B1F23;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.about-us__card-text {
+  color: #1B1F23;
+  font-size: 16px;
+  line-height: 24px;
+}
