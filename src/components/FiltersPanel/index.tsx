@@ -12,8 +12,8 @@ export default function FiltersPanel() {
       <Input placeholder='input' onChange={(str) => {
         console.log(str)
       }} label='Название' />
-      <Dropdown label='Жанр' defaultText='Выберите жанр' options={["Фэнтези", "Боевик", "Драма"]}/>
-      <Dropdown label='Кинотеатр' defaultText='Выберите кинотеатр' options={['Альянс', "Спутник", "Луч"]}/>
+      <Dropdown label='Жанр' defaultText='Выберите жанр' options={["Фэнтези", "Боевик", "Драма"]} onChange={console.log}/>
+      <Dropdown label='Кинотеатр' defaultText='Выберите кинотеатр' options={['Альянс', "Спутник", "Луч"]} onChange={console.log}/>
     </div>
   );
 }

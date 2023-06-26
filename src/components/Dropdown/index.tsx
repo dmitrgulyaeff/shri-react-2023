@@ -1,25 +1,30 @@
 'use client';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
 interface DropdownProps {
   label: string;
   defaultText: string;
   options: string[];
+  onChange: (value: string) => void
 }
 
 const Dropdown: FC<DropdownProps> = ({
   label,
   defaultText,
   options,
+  onChange
 }: DropdownProps) => {
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [selectedOption, setSelectedOption] = useState('');
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  useEffect(() => onChange(selectedOption), [selectedOption, onChange])
+  
   const handleOpenList = () => {
     setIsOpen(true);
   };
-  const handleOptionSelect = (option: string | null) => {
+
+  const handleOptionSelect = (option: string) => {
     setSelectedOption(option);
   };
 
@@ -37,7 +42,7 @@ const Dropdown: FC<DropdownProps> = ({
         }
         onClick={handleOpenList}
       >
-        {selectedOption ? selectedOption : defaultText}
+        {selectedOption !== '' ? selectedOption : defaultText}
         <svg
           className={styles['dropdown__selector-icon'] +
           (isOpen ? ' ' + styles['dropdown__selector-icon_active'] : '')}
@@ -61,7 +66,7 @@ const Dropdown: FC<DropdownProps> = ({
             key="default"
             className={styles['dropdown__option']}
             onClick={() => {
-              handleOptionSelect(null);
+              handleOptionSelect('');
               setIsOpen(false);
             }}
           >
