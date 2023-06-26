@@ -2,13 +2,14 @@ import './globals.css';
 import { Roboto } from 'next/font/google';
 import Header from '@/components/Header/';
 import Footer from '@/components/Footer';
+import { StoreProvider } from '@/redux/StoreProvider';
 
 const roboto = Roboto({
-  weight: ['400', '500','700'],
+  weight: ['400', '500', '700'],
   style: ['normal', 'italic'],
   subsets: ['latin', 'cyrillic'],
   display: 'swap',
-})
+});
 
 export const metadata = {
   title: 'Create Next App',
@@ -23,9 +24,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <StoreProvider>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </StoreProvider>
       </body>
     </html>
   );
