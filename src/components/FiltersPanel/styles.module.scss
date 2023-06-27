@@ -1,8 +1,8 @@
 .filters-panel {
   position: sticky;
   top: 108px;
-  height: calc(100vh - 86px - 81px);
-  left: 32px;
+  min-height: 337px;
+  height: calc(100vh - 261px);
   width: 360px;
   background-color: #FFF;
   padding: 24px;
