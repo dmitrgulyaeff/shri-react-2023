@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import styles from './styles.module.scss';
-import filmCover from '$/images/The_Lord_of_the_Rings._The_Fellowship_of_the_Ring_—_movie.jpg';
+import filmCover from '$/images/fallback/100x120.png';
 import Link from 'next/link';
 import TicketCounter from '../TicketCounter';
 import Popup from '../Popup';
@@ -38,7 +38,7 @@ export default function TicketCard({
     <article className={styles['ticket']}>
       <Image
         className={styles['ticket__poster']}
-        src={posterUrl ?? filmCover}
+        src={posterUrl || filmCover}
         width={100}
         height={120}
         alt="film cover"

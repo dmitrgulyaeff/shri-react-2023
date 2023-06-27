@@ -2,13 +2,14 @@ import styles from './styles.module.scss';
 import Image from 'next/image';
 import Movie from '@/entities/movie';
 import TicketCounter from '../TicketCounter';
+import filmCover from '$/images/fallback/400x500.png';
 
 export default function FilmInfo(movie: Movie) {
   return (
     <div className={styles['film']}>
       <Image
         className={styles['film__poster']}
-        src={movie.posterUrl}
+        src={movie.posterUrl || filmCover}
         width={400}
         height={500}
         alt="film cover"

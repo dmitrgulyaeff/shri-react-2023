@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import styles from './styles.module.scss';
-
+import userPhoto from '$/images/fallback/100x100.png';
 export interface Review {
   id: string;
   name: string;
@@ -19,7 +19,7 @@ export default function UserReview({
     <article className={styles['user__review']} key={id}>
       <Image
         className={styles['user__photo']}
-        src={photoUrl ? photoUrl : '/images/icons/unknownUser.svg'}
+        src={photoUrl ? photoUrl : userPhoto}
         width={100}
         height={100}
         alt="user photo"
