@@ -25,6 +25,7 @@ const cartSlice = createSlice({
       }
 
       if (count === 1) {
+        state['total'] -= 1;
         delete state[payload];
         return;
       }
