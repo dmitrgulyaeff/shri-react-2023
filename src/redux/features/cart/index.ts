@@ -1,16 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = {};
+interface CartState {
+  [key: string]: number;
+}
+
+const initialState: CartState = { total: 0 };
 
 const cartSlice = createSlice({
-  name: "cart",
+  name: 'cart',
   initialState,
   reducers: {
-    increment: (state, { payload }) => {
+    increment: (state, { payload }: PayloadAction<string>) => {
+      if (state['total'] === 30) return;
+
       const count = state[payload] || 0;
       state[payload] = count + 1;
+      state['total'] += 1;
     },
-    decrement: (state, { payload }) => {
+    decrement: (state, { payload }: PayloadAction<string>) => {
       const count = state[payload];
 
       if (!count) {
@@ -23,6 +30,7 @@ const cartSlice = createSlice({
       }
 
       state[payload] = count - 1;
+      state['total'] -= 1;
     },
     reset: () => initialState,
   },

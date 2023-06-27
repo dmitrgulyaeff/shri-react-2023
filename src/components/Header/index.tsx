@@ -1,8 +1,13 @@
+'use client';
+
 import styles from './styles.module.scss';
 import classnames from 'classnames';
 import Link from 'next/link';
+import { selectTotalTickets } from '@/redux/features/cart/selector';
+import { useSelector } from 'react-redux';
 
 export default function Header() {
+  const totalTickets = useSelector((state) => selectTotalTickets(state));
   return (
     <header className={classnames(styles.header)}>
       <Link href="/">
@@ -10,7 +15,9 @@ export default function Header() {
       </Link>
       <Link href="/basket">
         <div className={styles.basket}>
-          <span className={styles.basket__count}>7</span>
+          {Boolean(totalTickets) && (
+            <span className={styles.basket__count}>{totalTickets}</span>
+          )}
           <svg
             width="32"
             height="32"
