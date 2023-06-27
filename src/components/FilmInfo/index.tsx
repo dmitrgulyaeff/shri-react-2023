@@ -1,8 +1,9 @@
 import styles from './styles.module.scss';
 import Image from 'next/image';
 import Movie from '@/entities/movie';
+import TicketCounter from '../TicketCounter';
 
-export default function FilmInfo(movie:Movie) {
+export default function FilmInfo(movie: Movie) {
   return (
     <div className={styles['film']}>
       <Image
@@ -13,21 +14,32 @@ export default function FilmInfo(movie:Movie) {
         alt="film cover"
       />
       <div>
-        <h1 className={styles['film__name']}>
-          Властелин колец: Братство кольца
-        </h1>
+        <div className={styles['film__counter-wrapper']}>
+          <h1 className={styles['film__title']}>
+            {movie.title}
+          </h1>
+          <TicketCounter id={movie.id} />
+        </div>
+
+
         <ul className={styles['film__info']}>
           <li className={styles['film__info-row']}>
             <span className={styles['film__info-col-header']}>Жанр</span>
-            <span className={styles['film__info-col-value']}>{movie.genre}</span>
+            <span className={styles['film__info-col-value']}>
+              {movie.genre}
+            </span>
           </li>
           <li className={styles['film__info-row']}>
             <span className={styles['film__info-col-header']}>Год выпуска</span>
-            <span className={styles['film__info-col-value']}>{movie.releaseYear}</span>
+            <span className={styles['film__info-col-value']}>
+              {movie.releaseYear}
+            </span>
           </li>
           <li className={styles['film__info-row']}>
             <span className={styles['film__info-col-header']}>Рейтинг</span>
-            <span className={styles['film__info-col-value']}>{movie.rating}</span>
+            <span className={styles['film__info-col-value']}>
+              {movie.rating}
+            </span>
           </li>
           <li className={styles['film__info-row']}>
             <span className={styles['film__info-col-header']}>Режиссер</span>

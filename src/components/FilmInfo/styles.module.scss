@@ -10,12 +10,18 @@
   background-size: cover;
 }
 
-.film__name {
+.film__title {
   margin: 0;
   color: #1b1f23;
   font-size: 32px;
   font-weight: 600;
   line-height: 32px;
+}
+
+.film__counter-wrapper{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
 }
 
 .film__info {
