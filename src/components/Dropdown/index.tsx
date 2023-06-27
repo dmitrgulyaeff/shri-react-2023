@@ -1,6 +1,7 @@
 'use client';
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import styles from './styles.module.scss';
+import { createPortal } from 'react-dom';
 
 interface DropdownProps {
   label: string;
@@ -18,11 +19,27 @@ const Dropdown: FC<DropdownProps> = ({
   options,
   onChange,
 }: DropdownProps) => {
+  const dropdownSelectRef = useRef<HTMLDivElement>(null);
   const [selectedOption, setSelectedOption] = useState('');
   const [selectedValue, setSelectedValue] = useState('');
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   useEffect(() => onChange(selectedOption), [selectedOption, onChange]);
+
+  useEffect(() => {
+    const handleScroll = () => setIsOpen(false);
+    const handleClick = () => setIsOpen(false);
+
+    if (isOpen) {
+      document.addEventListener('scroll', handleScroll);
+      document.addEventListener('click', handleClick);
+    }
+
+    return () => {
+      document.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('click', handleClick);
+    };
+  }, [isOpen]);
 
   const handleOpenList = () => {
     setIsOpen(true);
@@ -34,14 +51,13 @@ const Dropdown: FC<DropdownProps> = ({
   };
 
   return (
-    // TODO : портал
-    <div className={styles['dropdown']}>
+    <div className={styles['dropdown']} ref={dropdownSelectRef}>
       <label className={styles['dropdown__label']}>{label}</label>
       <div
         className={
           styles['dropdown__selector'] +
           (isOpen ? ' ' + styles['dropdown__selector_active'] : '') +
-          (selectedOption === null
+          (selectedOption === ''
             ? ' ' + styles['dropdown__selector_default']
             : '')
         }
@@ -67,32 +83,44 @@ const Dropdown: FC<DropdownProps> = ({
           />
         </svg>
       </div>
-      {isOpen && (
-        <ul className={styles['dropdown__options']}>
-          <li
-            key="default"
-            className={styles['dropdown__option']}
-            onClick={() => {
-              handleOptionSelect({ name: '' });
-              setIsOpen(false);
+      {isOpen &&
+        dropdownSelectRef.current &&
+        createPortal(
+          <ul
+            className={styles['dropdown__options']}
+            style={{
+              top:
+                dropdownSelectRef.current.getBoundingClientRect().bottom ?? 0,
+              left: dropdownSelectRef.current.getBoundingClientRect().left ?? 0,
+              width:
+                dropdownSelectRef.current.getBoundingClientRect().width ?? 0,
             }}
           >
-            -
-          </li>
-          {options.map((option) => (
             <li
-              key={option.id || option.name}
+              key="default"
               className={styles['dropdown__option']}
               onClick={() => {
-                handleOptionSelect(option);
+                handleOptionSelect({ name: '' });
                 setIsOpen(false);
               }}
             >
-              {option.name}
+              -
             </li>
-          ))}
-        </ul>
-      )}
+            {options.map((option) => (
+              <li
+                key={option.id || option.name}
+                className={styles['dropdown__option']}
+                onClick={() => {
+                  handleOptionSelect(option);
+                  setIsOpen(false);
+                }}
+              >
+                {option.name}
+              </li>
+            ))}
+          </ul>,
+          document.getElementById('portal-selectors') || document.body
+        )}
     </div>
   );
 };
