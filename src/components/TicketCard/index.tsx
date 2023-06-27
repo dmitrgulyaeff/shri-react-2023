@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import styles from './styles.module.scss';
+// TODO дэфолтную картинку сменить
 import filmCover from '$/images/The_Lord_of_the_Rings._The_Fellowship_of_the_Ring_—_movie.jpg';
-
+import Link from 'next/link';
 import TicketCounter from '../TicketCounter';
 
 interface TicketCardProps {
@@ -23,7 +24,9 @@ export default function TicketCard({title, genre, id, posterUrl, showDelete}:Tic
         alt="film cover"
       />
       <div className={styles['ticket__info']}>
-        <h2 className={styles['ticket__info-name']}>{title}</h2>
+        <Link href={`/movie/${id}`}>
+          <h2 className={styles['ticket__info-name']}>{title}</h2>
+        </Link>
         <span className={styles['ticket__info-genre']}>{genre}</span>
       </div>
       <TicketCounter id={id}/>
