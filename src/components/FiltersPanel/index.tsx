@@ -1,7 +1,7 @@
 'use client';
 import styles from './styles.module.scss';
-import Dropdown from '../Dropdown';
-import Input from '../Input';
+import Dropdown from './Dropdown';
+import Input from './Input';
 
 export default function FiltersPanel({
   inputOnChange,

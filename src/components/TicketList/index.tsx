@@ -1,4 +1,4 @@
-import TicketCard from '../TicketCard/';
+import TicketCard from './TicketCard';
 import styles from './styles.module.scss';
 import Movie from '@/entities/movie';
 

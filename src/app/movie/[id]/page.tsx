@@ -1,9 +1,9 @@
 "use client";
 import FilmInfo from '@/components/FilmInfo';
-import UserReview from '@/components/UserReview';
+import UserReview from '@/components/FilmInfo/UserReview';
 import styles from './styles.module.scss'
 import { useGetReviewsByMovieIdQuery, useGetMovieByIdQuery } from '@/redux/services/movieApi';
-import { Review } from '@/components/UserReview';
+import { Review } from '@/components/FilmInfo/UserReview';
 interface MovieProps {
   params: {
     id: string;

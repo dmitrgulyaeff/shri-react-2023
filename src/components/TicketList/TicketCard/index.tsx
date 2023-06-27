@@ -4,8 +4,8 @@ import Image from 'next/image';
 import styles from './styles.module.scss';
 import filmCover from '$/images/fallback/100x120.png';
 import Link from 'next/link';
-import TicketCounter from '../TicketCounter';
-import Popup from '../Popup';
+import TicketCounter from '../../TicketCounter';
+import Popup from '../../Popup';
 import Cross from '$/images/icons/ticketCardCross.svg';
 
 interface TicketCardProps {
