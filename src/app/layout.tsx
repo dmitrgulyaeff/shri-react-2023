@@ -25,7 +25,14 @@ export default function RootLayout({
     <html lang="en">
       <body className={roboto.className}>
         <StoreProvider>
-          <div id='portal-selectors' style={{zIndex: 1, position: 'absolute'}}></div>
+          <div
+            id="portal-selectors"
+            style={{ zIndex: 1, position: 'absolute' }}
+          ></div>
+          <div
+            id="portal-popups"
+            style={{ zIndex: 2, position: 'absolute' }}
+          ></div>
           <Header />
           <main>{children}</main>
           <Footer />
