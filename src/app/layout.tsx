@@ -27,7 +27,7 @@ export default function RootLayout({
         <StoreProvider>
           <div
             id="portal-selectors"
-            style={{ zIndex: 1, position: 'absolute' }}
+            style={{ zIndex: 1, position: 'fixed' }}
           ></div>
           <div
             id="portal-popups"

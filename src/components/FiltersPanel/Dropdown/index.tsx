@@ -1,5 +1,5 @@
 'use client';
-import { FC, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './styles.module.scss';
 import { createPortal } from 'react-dom';
 import Arrow from '$/images/icons/dropdownArrow.svg';
@@ -14,12 +14,18 @@ interface DropdownProps {
   onChange: (value: string) => void;
 }
 
-const Dropdown: FC<DropdownProps> = ({
+const DropdownContainer = ({ children }: { children: React.ReactNode }) => {
+  const portalContainer = document.getElementById('portal-selectors');
+  if (!portalContainer) return null;
+  return createPortal(children, portalContainer);
+};
+
+export default function Dropdown({
   label,
   defaultText,
   options,
   onChange,
-}: DropdownProps) => {
+}: DropdownProps) {
   const dropdownSelectRef = useRef<HTMLDivElement>(null);
   const [selectedOption, setSelectedOption] = useState('');
   const [selectedValue, setSelectedValue] = useState('');
@@ -73,9 +79,8 @@ const Dropdown: FC<DropdownProps> = ({
           }
         />
       </div>
-      {isOpen &&
-        dropdownSelectRef.current &&
-        createPortal(
+      {isOpen && dropdownSelectRef.current && (
+        <DropdownContainer>
           <ul
             className={styles['dropdown__options']}
             style={{
@@ -108,11 +113,9 @@ const Dropdown: FC<DropdownProps> = ({
                 {option.name}
               </li>
             ))}
-          </ul>,
-          document.getElementById('portal-selectors') || document.body
-        )}
+          </ul>
+        </DropdownContainer>
+      )}
     </div>
   );
-};
-
-export default Dropdown;
+}
