@@ -1,8 +1,8 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import styles from './styles.module.scss';
-import { createPortal } from 'react-dom';
 import Arrow from '$/images/icons/dropdownArrow.svg';
+import DropdownPortal from '@/components/Portal/DropdownsPortal';
 
 interface DropdownProps {
   label: string;
@@ -13,12 +13,6 @@ interface DropdownProps {
   }[];
   onChange: (value: string) => void;
 }
-
-const DropdownContainer = ({ children }: { children: React.ReactNode }) => {
-  const portalContainer = document.getElementById('portal-selectors');
-  if (!portalContainer) return null;
-  return createPortal(children, portalContainer);
-};
 
 export default function Dropdown({
   label,
@@ -80,7 +74,7 @@ export default function Dropdown({
         />
       </div>
       {isOpen && dropdownSelectRef.current && (
-        <DropdownContainer>
+        <DropdownPortal>
           <ul
             className={styles['dropdown__options']}
             style={{
@@ -114,7 +108,7 @@ export default function Dropdown({
               </li>
             ))}
           </ul>
-        </DropdownContainer>
+        </DropdownPortal>
       )}
     </div>
   );

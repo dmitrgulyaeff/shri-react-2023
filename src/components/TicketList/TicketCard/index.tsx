@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import styles from './styles.module.scss';
 import filmCover from '$/images/fallback/100x120.png';
@@ -15,12 +14,6 @@ interface TicketCardProps {
   id: string;
   showDelete: boolean;
 }
-
-const PopupContainer = ({ children }: { children: React.ReactNode }) => {
-  const portalContainer = document.getElementById('portal-popups');
-  if (!portalContainer) return null;
-  return createPortal(children, portalContainer);
-};
 
 export default function TicketCard({
   title,
@@ -61,11 +54,7 @@ export default function TicketCard({
           <Cross />
         </button>
       )}
-      {open && (
-        <PopupContainer>
-          <Popup id={id} onClose={() => setOpen(false)}/>
-        </PopupContainer>
-      )}
+      {open && <Popup id={id} onClose={() => setOpen(false)} />}
     </article>
   );
 }

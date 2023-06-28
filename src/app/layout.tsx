@@ -13,7 +13,8 @@ const roboto = Roboto({
 
 export const metadata = {
   title: 'Билетопоиск',
-  description: 'Мы — крупнейший сервис о кино в рунете. На нем вы сможете посмотреть фильмы и сериалы, купить билеты в кино, узнать рейтинги популярных видео и интересные факты, поставить фильмам оценки, написать рецензии и дополнить описание фильмов.',
+  description:
+    'Мы — крупнейший сервис о кино в рунете. На нем вы сможете посмотреть фильмы и сериалы, купить билеты в кино, узнать рейтинги популярных видео и интересные факты, поставить фильмам оценки, написать рецензии и дополнить описание фильмов.',
 };
 
 export default function RootLayout({
@@ -22,17 +23,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="ru">
       <body className={roboto.className}>
         <StoreProvider>
-          <div
-            id="portal-selectors"
-            style={{ zIndex: 1, position: 'fixed' }}
-          ></div>
-          <div
-            id="portal-popups"
-            style={{ zIndex: 2, position: 'absolute' }}
-          ></div>
           <Header />
           <main>{children}</main>
           <Footer />
